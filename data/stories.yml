@@ -1,0 +1,72 @@
+version: "3.1"
+
+stories:
+  - story: happy path
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_great
+      - action: utter_happy
+
+  - story: sad path 1
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: affirm
+      - action: utter_happy
+
+  - story: sad path 2
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: mood_unhappy
+      - action: utter_cheer_up
+      - action: utter_did_that_help
+      - intent: deny
+      - action: utter_goodbye
+
+# ##################################################
+# 测试场景
+# ##################################################
+
+  - story: slot
+    steps:
+      - intent: bot_first_slot
+      - action: action_slot_form
+      - active_loop: action_slot_form 
+  
+  - story: Story from Conversation ID f5378fefc22947828f41715e11487177
+    steps:
+    - intent: bot_first_slot
+      entities:
+      - fslot: slot
+    - action: action_slot_form
+    - active_loop: action_slot_form
+    - slot_was_set:
+      - firstslot: slot
+
+
+# ##################################################
+# 快递
+# ##################################################
+  - story: express_search
+    steps:
+    - intent: search_express
+    - action: action_search_express_form
+    - active_loop:  action_search_express_form
+
+  - story: express_search_detail
+    steps:
+    - intent: search_express
+      entities:
+      - express: zhongtong
+      - number: 75416807218275
+    - action: action_search_express_form
+    - active_loop: action_search_express_form
+    - slot_was_set:
+      - expressinfo: shunfeng
+    - slot_was_set:
+      - numberinfo: SF1401090331731
