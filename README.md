@@ -23,3 +23,7 @@ qq框架采用cqhttp
 运行go-cqhttp.bat
 #### 启动qq机器人
 运行bot.py脚本
+
+
+### 风控
+https://github.com/Mrs4s/go-cqhttp/discussions/2245
